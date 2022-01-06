@@ -139,6 +139,20 @@ export const SpacedHeading = styled.h6`
   letter-spacing: 3px;
   color: ${smokeGrey};
   font-size: 14px;
+  font-weight: 500;
+  ${sizeTablet(css`
+  font-size: 12px;
+  `)}
+`
+export const SpacedCapHeading = styled.h6`
+  letter-spacing: 3px;
+  color: ${smokeGrey};
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  ${sizeTablet(css`
+  font-size: 12px;
+  `)}
 `
 export const TextStandoutGradientOverlay = styled.div`
   content: '';

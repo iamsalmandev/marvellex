@@ -31,7 +31,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "TSC_COMPILE_ON_ERROR=true react-app-rewired start",
+    "start": "react-app-rewired start",
     "build": "TSC_COMPILE_ON_ERROR=true react-app-rewired build"
   },
   "eslintConfig": {

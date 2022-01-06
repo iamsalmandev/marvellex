@@ -16,3 +16,4 @@ export * from './CountdownClock';
 export * from './Section';
 // localstorage utils
 export * from '../LocalStorageContainer';
+export * from './Typography'
