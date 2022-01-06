@@ -10,7 +10,7 @@ export const HomePage: React.FC<{}> = () => {
             <IntroBanner />
             <PromotionBanner />
             <CoinsBanner />
-            <EcosystemBanner />
+            {/* <EcosystemBanner /> */}
             <WhitepaperBanner />
         </MainLayout >
     );

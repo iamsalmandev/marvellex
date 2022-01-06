@@ -38,14 +38,14 @@ export const Footer = () => {
   return <Box width="100%" height="400px" style={{
     background: background
   }}>
-    <Container maxWidth="xl" style={{ height: 'inherit' }} >
+    <Container maxWidth="xl" style={{ height: 'inherit', paddingTop: '2.5rem' }} >
       <Grid spacing={1} container style={{ marginTop: '20px', display: 'flex', alignItems: 'center', }}>
-        <Grid item md={8}> <img src={marvellexLogo} alt="loading" /></Grid>
+        <Grid item md={8}> <img style={{width: '40px', height: 'auto', margin: '0 1.2rem'}} src={marvellexLogo} alt="loading" /></Grid>
         <Grid item md={4}></Grid>
       </Grid>
       <Grid spacing={1} container style={{ display: 'flex', alignItems: 'center', }}>
         <Grid item md={4}>
-          <SpacedHeading style={{ wordBreak: "break-word", fontSize: '14px', fontWeight: 'normal', letterSpacing: '1px' }}>Lorem ipsum dolor sit amet,
+          <SpacedHeading style={{ wordBreak: "break-word", fontSize: '14px', fontWeight: 'normal', letterSpacing: '1px', margin: '1rem 0.5rem' }}>Lorem ipsum dolor sit amet,
             consectetuer adipiscing elit. Donec odio.
             Quisque volutpat mattis eros. Nullam malesuada
             erat ut turpis. Suspendisse urna nibh.Lorem ipsum dolor
@@ -58,7 +58,7 @@ export const Footer = () => {
 
         </Grid>
         <Grid item md={4} >
-          <SpacedHeading>Quick Links</SpacedHeading>
+          <SpacedHeading style={{color: 'black', fontWeight: 600, letterSpacing: 0.5, fontSize:'1.7ch'}}>Quick Links</SpacedHeading>
           <Box display="flex">
             <Box>
               <StyledMuiLink>Home</StyledMuiLink>

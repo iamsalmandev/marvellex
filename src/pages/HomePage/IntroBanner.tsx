@@ -51,8 +51,8 @@ export const IntroBanner: React.FC<BoxProps> = (props) => {
                         flexDirection="column"
                         alignItems="center"
                     >
-                        <SpacedCapHeading>Welcome to Marvellex</SpacedCapHeading>
-                        <TypographyH1>The Internet of value is Here</TypographyH1>
+                        <SpacedCapHeading style={{textShadow: '2px 2px 4px white'}}>Welcome to Marvellex</SpacedCapHeading>
+                        <TypographyH1 style={{fontWeight: 700, color: '#04231b', textShadow: '2px 2px 4px white'}}>The Internet of value is Here</TypographyH1>
                         {/* <Typography
                             variant="h2"
                             color="inherit"

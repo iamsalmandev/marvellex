@@ -38,7 +38,7 @@ export const CoinCard: React.FC<Props> = ({
                 <Typography align='left' color='inherit' variant='caption'>{`${description}`}</Typography>
             </Box>
             {to && <Box py={1} color={marvelGreen} display="flex" >
-                <Link to={to} style={{ color: 'inherit', letterSpacing: '3px' }}> <Typography align='left' color='inherit' variant='h6'>Learn More</Typography></Link>
+                <Link to={to} style={{ color: 'inherit', letterSpacing: '3px', textDecoration: 'none' }}> <Typography align='left' color='inherit' variant='h6'>Learn More</Typography></Link>
             </Box>}
         </Card >
     );

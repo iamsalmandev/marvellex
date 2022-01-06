@@ -11,7 +11,7 @@ export const yellow = '#F5D164';
 export const dullYellow = '#b39743';
 export const dullTeelish = '#209aab';
 
-export const background = '#f7f7f7';
+export const background = 'white';
 // text colors
 export const highlightGreen = '#F0F9F6';
 export const darkBlue = '#203541';

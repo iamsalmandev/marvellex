@@ -10,7 +10,7 @@ interface Props {
     item: ItemType;
     cardStyles?: React.CSSProperties;
 }
-export const MultiComponentCardDimension = { height: '320px', width: '290px' };
+export const MultiComponentCardDimension = { minHeight: '100px', width: '290px' };
 
 export const MultiComponentCard: React.FC<Props> = ({
     item,

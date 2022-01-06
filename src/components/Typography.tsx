@@ -6,7 +6,7 @@ export const TypographyH1 = styled.h1`
     text-align: center;
     font-weight: 600;
     word-break: break-word;
-    font-size: 65px;
+    font-size: 62px;
     font-family: 'Montserrat';
     margin: 1.5rem 0;
     ${sizeTablet(css`
