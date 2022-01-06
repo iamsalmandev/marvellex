@@ -20,7 +20,7 @@ export const MultiComponentCard: React.FC<Props> = ({
     return (
         <Card
             onClick={() => undefined}
-            style={{ margin: '15px', padding: "20px", background: highlightGreen, ...MultiComponentCardDimension, ...cardStyles }}
+            style={{ transition: 'all ease 0.3s', margin: '15px', padding: "20px", background: highlightGreen, ...MultiComponentCardDimension, ...cardStyles }}
         >
             {components.map(({ element, styles = {} }) => typeof element === 'string' ? <Box py={1} color={marvelGreen} display="flex" style={styles}>
                 {element}

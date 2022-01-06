@@ -14,6 +14,9 @@ export * from './NoContentView';
 export * from './Table';
 export * from './CountdownClock';
 export * from './Section';
+export * from './TabSection';
+export * from './Tabs';
+export * from './TabsVertical';
 // localstorage utils
 export * from '../LocalStorageContainer';
 export * from './Typography'

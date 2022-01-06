@@ -18,8 +18,18 @@ import apple from './apple.svg';
 import webBackground from './webBackground.svg';
 import whitePaper from './white-paper.svg';
 import mobileApp from './mobile-app.png';
+import marvellexChain from './marvellex-chain.svg';
+import marvellexLabs from './marvellex-labs.svg';
+import marvellexExchange from './marvellex-exchange.svg';
+import marvellexGoldImg from './marvellex-gold.svg';
+import marvellexMarketplace from './marvellex-marketplace.svg';
 
 export {
+  marvellexMarketplace,
+  marvellexGoldImg,
+  marvellexExchange,
+  marvellexLabs,
+  marvellexChain,
   marvellexGold,
   marvellexClassic,
   marvellexLogo,

@@ -1,14 +1,13 @@
 import Box, { BoxProps } from "@material-ui/core/Box";
-import { Section, Button, SpacedHeading, SpacedCapHeading } from "~/components";
+import { Section, Button, SpacedHeading } from "~/components";
 import { worldMap } from "~/assets";
-import Typography from "@material-ui/core/Typography";
 import { TypographyH1 } from "~/components";
 import { css } from "styled-components";
-import { sizeMobile, lightAshWhite, sizeTablet, black50, smokeGrey, white50 } from '~/styles';
+import { sizeTablet, } from '~/styles';
 
 const registerBtnCss = css`
     text-transform: uppercase;
-    padding: 20px;
+    padding: 15px;
     margin-top: 20px;
     font-weight: 700;
     min-width: 150px;
@@ -17,7 +16,7 @@ const registerBtnCss = css`
     letter-spacing: 2px;
     border-radius: 7px;
     ${sizeTablet(css`
-    font-size: 12px;
+        font-size: 12px;
         padding: 10px 10px;
     `)}
 `
@@ -51,17 +50,8 @@ export const IntroBanner: React.FC<BoxProps> = (props) => {
                         flexDirection="column"
                         alignItems="center"
                     >
-                        <SpacedCapHeading style={{textShadow: '2px 2px 4px white'}}>Welcome to Marvellex</SpacedCapHeading>
-                        <TypographyH1 style={{fontWeight: 700, color: '#04231b', textShadow: '2px 2px 4px white'}}>The Internet of value is Here</TypographyH1>
-                        {/* <Typography
-                            variant="h2"
-                            color="inherit"
-                            align="center"
-                            style={{ fontWeight: 600, wordBreak: "break-word" }}
-                        >
-                            {" "}
-                            The Internet of Value is Here
-                        </Typography> */}
+                        <SpacedHeading style={{ textShadow: '2px 2px 4px white', textTransform: 'uppercase' }}>Welcome to Marvellex</SpacedHeading>
+                        <TypographyH1 style={{ fontWeight: 700, color: '#04231b', textShadow: '2px 2px 4px white' }}>The Internet of value is Here</TypographyH1>
                         <SpacedHeading
                             color="inherit"
                             style={{
