@@ -9,9 +9,9 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import { ArrowForward } from '@material-ui/icons';
 
 export const Tab = styled(MuiTab)`
-  span{
-      align-items: start;
-      text-align: left;
+  span {
+    align-items: start;
+    text-align: left;
   }
 `;
 
@@ -23,131 +23,166 @@ const Circle = styled.span<{ filled?: boolean }>`
   width: 8px;
   height: 8px;
   ${({ filled }) =>
-        filled &&
-        css`
+    filled &&
+    css`
       background: ${marvelGreen};
     `};
 `;
 
-
 const createGetSectionProps = (name: string, activeSection: string) => () => ({
-    style: { display: name === activeSection ? 'initial' : 'none' },
-    key: name,
+  style: { display: name === activeSection ? 'initial' : 'none' },
+  key: name,
 });
 
 interface SectionProps {
-    index: number,
-    getSectionProps(): { style: { display: string }; key: string };
+  index: number;
+  getSectionProps(): { style: { display: string }; key: string };
 }
-export interface Sections {
-    name: string;
-    displayName?: string;
-    render?(getSectionProps: SectionProps): React.ReactNode;
+interface Sections {
+  name: string;
+  displayName?: string;
+  render?(getSectionProps: SectionProps): React.ReactNode;
 }
 
 interface TabsVerticalProps {
-    activeSection: string;
-    sections: Sections[];
-    goBack?(): void | null;
-    onClickTab: (name: string) => void;
-    tabHeading?: string;
-    containerStyles?: React.CSSProperties;
-    sectionStyles?: React.CSSProperties;
+  activeSection: string;
+  sections: Sections[];
+  goBack?(): void | null;
+  onClickTab: (name: string) => void;
+  tabHeading?: string;
+  containerStyles?: React.CSSProperties;
+  sectionStyles?: React.CSSProperties;
 }
 
+const TabPanel: React.FC<{
+  children?: React.ReactNode | string;
+  value: number;
+  index: number;
+}> = (props) => {
+  const { children, value, index, ...other } = props;
 
-const TabPanel: React.FC<{ children?: React.ReactNode | string, value: number, index: number }> = (props) => {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+};
 
 const a11yProps = (index: number) => {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`,
-    };
-}
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
+};
 
+export const TabsVertical: React.FC<TabsVerticalProps> = ({
+  sections,
+  activeSection,
+  onClickTab,
+}) => {
+  const [value, setValue] = React.useState(0);
+  console.log('activeSection', activeSection);
+  const tabIndex = sections.findIndex(
+    (section) => section.name === activeSection
+  );
 
-export const TabsVertical: React.FC<TabsVerticalProps> = ({ sections, activeSection, onClickTab }) => {
-    const [value, setValue] = React.useState(0);
-    console.log("activeSection", activeSection)
-    const tabIndex = sections.findIndex(
-        (section) => section.name === activeSection
-    );
+  useEffect(() => {
+    setValue(tabIndex || 0);
+  }, [tabIndex]);
 
-    useEffect(() => {
-        setValue(tabIndex || 0);
-    }, [tabIndex]);
-    const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
-        setValue(newValue);
+  const renderCircles = () => {
+    const circles = [];
+    for (let i = 0; i < sections.length; i++) {
+      circles.push(<Circle key={i} filled={value === i} />);
     }
+    return circles;
+  };
 
-    const renderCircles = () => {
-        const circles = [];
-        for (let i = 0; i < sections.length; i++) {
-            circles.push(<Circle key={i} filled={value === i} />);
-        }
-        return circles;
-    };
-
-
-
-    return (
-        <Box display="">
-            <Box style={{
-                flexGrow: 1,
-                display: 'flex',
-                height: "100%",
-                justifyContent: 'center'
-            }} ><Box display={{ xs: 'none', md: 'block' }}>
-                    <Tabs
-                        textColor='primary'
-                        indicatorColor="primary"
-                        orientation="vertical"
-                        variant="scrollable"
-                        value={value}
-
-                        onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}
-                        aria-label="Vertical tabs example"
-                        style={{ borderRight: `1px solid ${smokeGrey}`, display: 'inherit' }}
-                    >
-                        {sections.map(({ name, displayName }, idx) => <Tab onClick={() => onClickTab(name)} label={displayName} {...a11yProps(idx)} style={{ alignItems: '' }} />)}
-                    </Tabs>
-                </Box>
-                {sections.map(({ name, render }, idx) => <>{typeof render == "function" ? render({ index: idx, getSectionProps: createGetSectionProps(name, activeSection) }) : <TabPanel value={value} index={idx} {...a11yProps(idx)}>
-                    {render}
-                </TabPanel>}
-                </>)}
-            </Box>
-            <Box display={{ xs: 'flex', md: 'none' }} justifyContent='space-between' >
-                <Box >
-                    <ArrowBack onClick={() => { if (value > 0) onClickTab(sections[value - 1].name) }} style={{ color: `${value == 0 ? smokeGrey : marvelGreen}`, marginRight: '10px' }} />
-                    <ArrowForward onClick={() => {
-                        if (value < sections.length - 1) onClickTab(sections[value + 1].name)
-                    }}
-                        style={{ color: `${value == sections.length - 1 ? smokeGrey : marvelGreen}` }} />
-                </Box>
-                <Box>{renderCircles()}</Box>
-            </Box>
+  return (
+    <Box display="">
+      <Box
+        style={{
+          flexGrow: 1,
+          display: 'flex',
+          height: '100%',
+          justifyContent: 'center',
+        }}
+      >
+        <Box display={{ xs: 'none', md: 'block' }}>
+          <Tabs
+            textColor="primary"
+            indicatorColor="primary"
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            aria-label="Vertical tabs example"
+            style={{
+              borderRight: `1px solid ${smokeGrey}`,
+              display: 'inherit',
+            }}
+          >
+            {sections.map(({ name, displayName }, idx) => (
+              <Tab
+                onClick={() => onClickTab(name)}
+                label={displayName}
+                {...a11yProps(idx)}
+              />
+            ))}
+          </Tabs>
         </Box>
-    );
-}
+        {sections.map(({ name, render }, idx) => (
+          <>
+            {typeof render == 'function' ? (
+              render({
+                index: idx,
+                getSectionProps: createGetSectionProps(name, activeSection),
+              })
+            ) : (
+              <TabPanel value={value} index={idx} {...a11yProps(idx)}>
+                {render}
+              </TabPanel>
+            )}
+          </>
+        ))}
+      </Box>
+      <Box display={{ xs: 'flex', md: 'none' }} justifyContent="space-between">
+        <Box>
+          <ArrowBack
+            onClick={() => {
+              if (value > 0) onClickTab(sections[value - 1].name);
+            }}
+            style={{
+              color: `${value === 0 ? smokeGrey : marvelGreen}`,
+              marginRight: '10px',
+            }}
+          />
+          <ArrowForward
+            onClick={() => {
+              if (value < sections.length - 1)
+                onClickTab(sections[value + 1].name);
+            }}
+            style={{
+              color: `${
+                value === sections.length - 1 ? smokeGrey : marvelGreen
+              }`,
+            }}
+          />
+        </Box>
+        <Box>{renderCircles()}</Box>
+      </Box>
+    </Box>
+  );
+};
